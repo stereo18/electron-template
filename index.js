@@ -41,6 +41,14 @@ function createWindow() {
     win.on('closed', () => {
         win = null
     })
+
+    // When a link is oppenned on new window, it's oppen on default browser
+    win.webContents.on('new-window', function(evt, url) {
+        evt.preventDefault();
+        shell.openExternal(url);
+      });
+
+
 }
 
 app.on('ready', createWindow)
